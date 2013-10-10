@@ -1,0 +1,26 @@
+/* always show vertical scrollbar to avoid width resize jumps between browsers */
+html {
+	overflow-y: scroll;
+}
+
+/* hint that labels are clickable */
+label { cursor: pointer; cursor:hand;}
+
+
+/* alert messages styling*/
+.alert {
+    display: none;
+}
+.alert.alert-success
+, .alert.alert-error
+, .alert.alert-info {
+    display: block;
+}
+
+
+/* site styles */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
