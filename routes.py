@@ -14,6 +14,10 @@ _routes = [
                     '/projeto', 
                     'handlers.ProjetoHandler', 
                     name='projeto', strict_slash=True),
+    RedirectRoute(
+                    '/historia', 
+                    'handlers.HistoriaHandler', 
+                    name='historia', strict_slash=True),
 ]
 
 def get_routes():

@@ -42,6 +42,8 @@
                 <!--navigation list-->
                 {% set navigation_list = [
                 ('home', 'Ínicio', uri_for('home')),
+                ('projeto', 'O Projeto', uri_for('projeto')),
+                ('historia', 'História da Cova do Vapor', uri_for('historia')),
                 ] -%}
                 
                 {% set active_page = active_page -%}
@@ -81,7 +83,7 @@
         {% block footer %}
       <hr>
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>Site construído por <a href="http://www.pedromanacas.com/" target="_blank">Pedro Manaças</a></p>
       </footer>
         {% endblock %}
     </div> <!-- /container -->

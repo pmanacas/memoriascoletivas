@@ -24,3 +24,29 @@ body {
   padding-bottom: 20px;
 }
 
+.imagem-home{
+	background: url(../img/home_bg.jpg) no-repeat center center;
+	background-size: cover;
+}
+
+.imagem-projeto{
+	background: url(../img/projeto_bg.jpg) no-repeat right center;
+	background-size: cover;
+	padding: 150px 0;
+	}
+
+.imagem-historia{
+	background: url(../img/historia_bg.jpg) no-repeat right center;
+	background-size: cover;
+	padding: 150px 0;
+	}
+.home-intro-box{
+	background:rgba(21, 21, 21, 0.85);
+	}
+	
+.home-intro-text {
+	color:#FFFFFF;
+	}
+div.projeto p, div.historia p{
+	margin-top:25px;
+	}

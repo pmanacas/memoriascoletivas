@@ -15,7 +15,12 @@ class HomePageHandler(BaseHandler):
 class ProjetoHandler(BaseHandler):
 
     def get(self):
-        return self.render_template('projeto.html')        
+        return self.render_template('projeto.html')
+
+class HistoriaHandler(BaseHandler):
+
+    def get(self):
+        return self.render_template('historia.html')         
 
         
 class NoJavascriptHandler(BaseHandler):
