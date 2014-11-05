@@ -1,11 +1,16 @@
-application: memoriascoletivas
+application: s~memoriascoletivas
 version: 0-0-1
 runtime: python27
 api_version: 1
 threadsafe: true
 
 # In production, uncomment line below.
-# default_expiration: "30d"
+default_expiration: "30d"
+
+
+builtins:
+- remote_api: on
+
 
 skip_files:
 - ^(.*/)?app\.yaml
@@ -22,41 +27,14 @@ skip_files:
 - Makefile
 - \.gitignore
 - ^\.git/.*
+- ^docs/(.*/)?
 - \.*\.lint$
 - ^(.*/)?.*\.pot$
 - ^(.*/)?.*\.cfg$
 - ^(.*/)?.*\.bat$
 
+
 handlers:
-- url: /apple-touch-icon\.png
-  mime_type: image/png
-  static_files: static/apple-touch-icon.png
-  upload: static/apple-touch-icon.png
-
-- url: /apple-touch-icon-57x57-precomposed\.png
-  mime_type: image/png
-  static_files: static/apple-touch-icon-57x57-precomposed.png
-  upload: static/apple-touch-icon-57x57-precomposed.png
-
-- url: /apple-touch-icon-72x72-precomposed\.png
-  mime_type: image/png
-  static_files: static/apple-touch-icon-72x72-precomposed.png
-  upload: static/apple-touch-icon-72x72-precomposed.png
-
-- url: /apple-touch-icon-114x114-precomposed\.png
-  mime_type: image/png
-  static_files: static/apple-touch-icon-114x114-precomposed.png
-  upload: static/apple-touch-icon-114x114-precomposed.png
-
-- url: /apple-touch-icon-144x144-precomposed\.png
-  mime_type: image/png
-  static_files: static/apple-touch-icon-144x144-precomposed.png
-  upload: static/apple-touch-icon-144x144-precomposed.png
-
-- url: /apple-touch-icon-precomposed\.png
-  mime_type: image/png
-  static_files: static/apple-touch-icon-precomposed.png
-  upload: static/apple-touch-icon-precomposed.png
   
 - url: /favicon\.ico
   mime_type: image/png
@@ -67,16 +45,10 @@ handlers:
   mime_type: text/plain
   static_files: static/robots.txt
   upload: static/robots.txt
-  
-- url: /crossdomain\.xml
-  mime_type: text/x-cross-domain-policy
-  static_files: static/crossdomain.xml
-  upload: static/crossdomain.xml
 
 - url: /img/(.*\.(gif|png|jpg))
   static_files: static/img/\1
   upload: static/img/(.*\.(gif|png|jpg))
-
 
 - url: /css
   mime_type: text/css
@@ -96,6 +68,7 @@ handlers:
 - url: /.*
   script: main.app
 
+  
 libraries:
 - name: jinja2
   version: "2.6"

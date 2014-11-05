@@ -11,6 +11,10 @@ _routes = [
                     'handlers.HomePageHandler', 
                     name='home', strict_slash=True),
     RedirectRoute(
+                    '/galeria', 
+                    'handlers.GaleriaHandler', 
+                    name='galeria', strict_slash=True),
+    RedirectRoute(
                     '/projeto', 
                     'handlers.ProjetoHandler', 
                     name='projeto', strict_slash=True),
@@ -18,6 +22,10 @@ _routes = [
                     '/historia', 
                     'handlers.HistoriaHandler', 
                     name='historia', strict_slash=True),
+    RedirectRoute(
+                    '/contatos', 
+                    'handlers.ContatosHandler', 
+                    name='contatos', strict_slash=True),
 ]
 
 def get_routes():

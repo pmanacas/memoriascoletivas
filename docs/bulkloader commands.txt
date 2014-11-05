@@ -1,0 +1,17 @@
+*******************
+Generate Config:
+*******************
+python appcfg.py create_bulkloader_config --application=rankingpal --url http://rankingpal.appspot.com/_ah/remote_api --filename=bulkloader.yaml --email=pedromanacas@gmail.com
+python appcfg.py create_bulkloader_config --application=memoriascoletivas --url http://memoriascoletivas.appspot.com/_ah/remote_api --filename=bulkloader.MC.yaml --email=pedromanacas@gmail.com
+
+
+
+
+********
+Photo:
+********
+LOCAL:
+python appcfg.py upload_data --application=dev~memoriascoletivas --url=http://localhost:15090/_ah/remote_api --filename=Photo.csv --email=pedromanacas@gmail.com --config_file=bulkloader.Photo.yaml --kind=Photo --num_threads=1
+
+LIVE:
+python appcfg.py upload_data --url=http://memoriascoletivas.appspot.com/_ah/remote_api --filename=Photo.csv --email=pedromanacas@gmail.com --config_file=bulkloader.Photo.yaml --kind=Photo --num_threads=1

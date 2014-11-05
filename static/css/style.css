@@ -24,6 +24,21 @@ body {
   padding-bottom: 20px;
 }
 
+.navbar-brand {
+	color:#EC2024 !important;
+}
+.imagem-peq{
+	float:left;
+	margin-bottom:5px;
+	margin-right: 5px;
+	widows:150px;
+	height:150px;
+}
+.nav>li>a {
+	padding-right:25px;
+	padding-left: 25px;
+}
+	
 .imagem-home{
 	background: url(../img/home_bg.jpg) no-repeat center center;
 	background-size: cover;
@@ -33,20 +48,33 @@ body {
 	background: url(../img/projeto_bg.jpg) no-repeat right center;
 	background-size: cover;
 	padding: 150px 0;
-	}
+}
 
 .imagem-historia{
 	background: url(../img/historia_bg.jpg) no-repeat right center;
 	background-size: cover;
 	padding: 150px 0;
-	}
+}
+	
 .home-intro-box{
-	background:rgba(21, 21, 21, 0.85);
-	}
+	background:rgba(21, 21, 21, 0.9);
+}
 	
 .home-intro-text {
 	color:#FFFFFF;
-	}
+}
+	
 div.projeto p, div.historia p{
 	margin-top:25px;
-	}
+}
+	
+#email-btn {
+	margin:30px 0 100px 0;
+}
+#email-txt{
+	font-size:1.3em;
+}
+
+div#galeria {
+    padding-left:16px;
+}

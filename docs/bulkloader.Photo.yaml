@@ -1,0 +1,87 @@
+python_preamble:
+- import: base64
+- import: re
+- import: google.appengine.ext.bulkload.transform
+- import: google.appengine.ext.bulkload.bulkloader_wizard
+- import: google.appengine.ext.db
+- import: google.appengine.api.datastore
+- import: google.appengine.api.users
+
+transformers:
+
+- kind: Photo
+  connector: csv
+  connector_options:
+    encoding: utf-8
+    columns: from_header
+
+  property_map:
+    - property: __key__
+      external_name: key
+      import_transform: "lambda x: db.Key(encoded = x)"
+        
+    - property: filename
+      external_name: filename
+      #"lambda x: x.decode('utf-8')"
+
+    - property: proprietario
+      external_name: proprietario
+      #"lambda x: x.decode('utf-8')"
+
+    - property: legenda
+      external_name: legenda
+      #"lambda x: x.decode('utf-8')"
+        
+    - property: tags
+      external_name: tags
+      import_transform: "lambda x: x.split(';')"
+      export_transform: "lambda x: x and ';'.join([k for k in x]) or ''"
+
+    - property: processo
+      external_name: processo
+      #"lambda x: x.decode('utf-8')"
+        
+    - property: decada
+      external_name: decada
+      import_transform: transform.none_if_empty(int)
+
+    - property: data_vaga
+      external_name: data_vaga
+      #"lambda x: x.decode('utf-8')"
+      
+    - property: data_precisa
+      external_name: data_precisa
+      import_transform: transform.import_date_time('%d/%m/%Y')
+      export_transform: transform.export_date_time('%d/%m/%Y')
+        
+    - property: local
+      external_name: local
+      #"lambda x: x.decode('utf-8')"
+
+    - property: flickr_title
+      external_name: flickr_title
+      #"lambda x: x.decode('utf-8')"
+
+    - property: flickr_id
+      external_name: flickr_id
+      #"lambda x: x.decode('utf-8')"
+
+    - property: flickr_owner
+      external_name: flickr_owner
+      #"lambda x: x.decode('utf-8')"
+
+    - property: flickr_secret
+      external_name: flickr_secret
+      #"lambda x: x.decode('utf-8')"
+
+    - property: flickr_server
+      external_name: flickr_server
+      #"lambda x: x.decode('utf-8')"
+
+    - property: flickr_farm
+      external_name: flickr_farm
+      #"lambda x: x.decode('utf-8')"
+
+    - property: flickr_originalsecret
+      external_name: flickr_originalsecret
+      #"lambda x: x.decode('utf-8')"
