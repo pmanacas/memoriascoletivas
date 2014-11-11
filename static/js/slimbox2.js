@@ -16,9 +16,12 @@ if (!/android|iphone|ipod|series60|symbian|windows ce|blackberry/i.test(navigato
                                         counterText: false,
                                         overlayOpacity:0.9
                                     }, 
-                                null, 
+                                function(el) {
+                                    return [el.href, document.getElementById('caption-'+el.id).innerHTML];
+                                },
                                 function(el) {
                                     return (this == el) || ((this.rel.length > 8) && (this.rel == el.rel));
-		});
+                                }
+        );
 	});
 }
