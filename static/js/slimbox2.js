@@ -8,8 +8,15 @@
 // AUTOLOAD CODE BLOCK (MAY BE CHANGED OR REMOVED)
 if (!/android|iphone|ipod|series60|symbian|windows ce|blackberry/i.test(navigator.userAgent)) {
 	jQuery(function($) {
-		$("a[rel^='lightbox']").slimbox({/* Put custom options here */}, null, function(el) {
-			return (this == el) || ((this.rel.length > 8) && (this.rel == el.rel));
+		$("a[rel^='lightbox']").slimbox({
+                                        overlayFadeDuration: 200,
+                                        imageFadeDuration:200,
+                                        resizeDuration: 1,
+                                        captionAnimationDuration: 1
+                                    }, 
+                                null, 
+                                function(el) {
+                                    return (this == el) || ((this.rel.length > 8) && (this.rel == el.rel));
 		});
 	});
 }
