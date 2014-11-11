@@ -24,9 +24,10 @@
         <div class="col-lg12" id="galeria">
 		{% for p in photos %}
 
-          <a rel="lightbox-group" title="aaa" id="{{p.flickr_id}}" href="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_z.jpg"><img class="img-responsive imagem-peq" src="img/blank.gif" data-original="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg" /><noscript><img class="img-responsive imagem-peq" src="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg"></noscript></a>
+          <a rel="lightbox-group" title="{{p.legenda}} [Autor: {{p.proprietario}}{{' '+p.data_vaga if p.data_vaga != ''}}]" id="{{p.flickr_id}}" href="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_z.jpg"><img class="img-responsive imagem-peq" src="img/blank.gif" data-original="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg" /><noscript><img class="img-responsive imagem-peq" src="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg"></noscript></a>
           <div id="caption-{{p.flickr_id}}" style="display:none;">
-            <a target="_blank" href="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_originalsecret}}_o.jpg">Download tamanho original</a>
+            <p><strong>{{p.legenda}}</strong> [Autor: {{p.proprietario}}{{' '+p.data_vaga if p.data_vaga != ''}}]</p>
+            <a target="_blank" href="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_originalsecret}}_o.jpg"><span class="glyphicon glyphicon-download-alt"></span> Download tamanho original</a>
           </div>
 		
         {% endfor %}
