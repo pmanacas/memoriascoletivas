@@ -12,7 +12,8 @@ if (!/android|iphone|ipod|series60|symbian|windows ce|blackberry/i.test(navigato
                                         overlayFadeDuration: 200,
                                         imageFadeDuration:200,
                                         resizeDuration: 1,
-                                        captionAnimationDuration: 1
+                                        captionAnimationDuration: 1,
+                                        counterText: false
                                     }, 
                                 null, 
                                 function(el) {

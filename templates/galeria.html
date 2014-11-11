@@ -24,7 +24,7 @@
         <div class="col-lg12" id="galeria">
 		{% for p in photos %}
 
-          <a rel="lightbox-group" title="Test caption" href="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_b.jpg"><img class="img-responsive imagem-peq" src="img/blank.gif" data-original="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg" /><noscript><img class="img-responsive imagem-peq" src="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg"></noscript></a>
+          <a rel="lightbox-group" title="&lt;a target='_blank' href='http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_originalsecret}}_o.jpg'&gt;Download tamanho original&lt;/a&gt;" href="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_z.jpg"><img class="img-responsive imagem-peq" src="img/blank.gif" data-original="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg" /><noscript><img class="img-responsive imagem-peq" src="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg"></noscript></a>
 		
         {% endfor %}
         <div class="clearfix"></div>
