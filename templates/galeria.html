@@ -25,13 +25,14 @@
                 <form class="form-inline" role="form" method="get" action="{{current_url}}">
                     <div class="form-group">
                             <label class="sr-only" for="autor">Autor</label>
-                            <select id="autor" name="autor" class="form-control">
+                            <select id="autor" name="autor" class="form-control" onchange="this.form.submit()">
+                                <option value="" {% if autor == None %}selected{% endif %} disabled>Filtrar por autor:</option>
                                 {% for a in autores %}
                                 <option value="{{a}}" {% if autor == a %}selected{% endif %}>{{a}}</option>
                                 {% endfor %}
                             </select>
                     </div>
-                 <button type="submit" class="btn btn-primary">Filtrar</button>
+                 <!--<button type="submit" class="btn btn-primary">Filtrar</button> -->
                 </form>
             </div>
         </div>

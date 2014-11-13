@@ -3,11 +3,6 @@ from basehandler import BaseHandler
 import models
 import logging
 
-def unique(seq):
-    seen = set()
-    seen_add = seen.add
-    return [ x for x in seq if not (x in seen or seen_add(x))]
-
 class HomePageHandler(BaseHandler):
 
     def get(self):
@@ -34,8 +29,9 @@ class GaleriaHandler(BaseHandler):
             autor = self.request.GET['autor']
         else:
             photos = all_photos
+            autor = None
         params = {
-            'debug': bool(self.request.GET),
+            'debug': '',
             'photos': photos,
             'autores': autores,
             'autor': autor
