@@ -3,6 +3,10 @@ from basehandler import BaseHandler
 import models
 import logging
 
+def unique(seq):
+    seen = set()
+    seen_add = seen.add
+    return [ x for x in seq if not (x in seen or seen_add(x))]
 
 class HomePageHandler(BaseHandler):
 
@@ -17,10 +21,24 @@ class GaleriaHandler(BaseHandler):
 
     def get(self):
         # photos = models.Photo.query().order(models.Photo.decada).fetch(400)
-        photos = models.Photo.query().fetch(400)
+        
+        all_photos = models.Photo.query().fetch(400)
+        autores = []
+        for p in all_photos:
+            if p.proprietario not in autores and p.proprietario != "":
+                autores.append(p.proprietario)
+        autores.sort()
+        
+        if self.request.GET:
+            photos = models.Photo.query(models.Photo.proprietario == self.request.GET['autor']).fetch(400)
+            autor = self.request.GET['autor']
+        else:
+            photos = all_photos
         params = {
-            'debug': '',
+            'debug': bool(self.request.GET),
             'photos': photos,
+            'autores': autores,
+            'autor': autor
         }
         return self.render_template('galeria.html', **params)
         

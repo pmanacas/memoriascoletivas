@@ -78,3 +78,7 @@ div.projeto p, div.historia p{
 div#galeria {
     padding-left:16px;
 }
+
+div#filters {
+    padding:0 0 16px 16px;
+}

@@ -18,7 +18,24 @@
         </div>
 
       </div>
- 
+        
+        <div class="row">
+
+            <div class="col-lg12" id="filters">
+                <form class="form-inline" role="form" method="get" action="{{current_url}}">
+                    <div class="form-group">
+                            <label class="sr-only" for="autor">Autor</label>
+                            <select id="autor" name="autor" class="form-control">
+                                {% for a in autores %}
+                                <option value="{{a}}" {% if autor == a %}selected{% endif %}>{{a}}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                 <button type="submit" class="btn btn-primary">Filtrar</button>
+                </form>
+            </div>
+        </div>
+    
       <div class="row">
 
         <div class="col-lg12" id="galeria">
@@ -45,7 +62,7 @@
 	$(document).ready(function() {
  		
 		$('img.imagem-peq').lazyload();
-    
+        
 });
     </script>
 {% endblock %}
