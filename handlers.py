@@ -15,7 +15,6 @@ class HomePageHandler(BaseHandler):
 class GaleriaHandler(BaseHandler):
 
     def get(self):
-        # photos = models.Photo.query().order(models.Photo.decada).fetch(400)
         
         all_photos = models.Photo.query().fetch(400)
         autores = []
@@ -25,16 +24,42 @@ class GaleriaHandler(BaseHandler):
         autores.sort()
         
         if self.request.GET:
-            photos = models.Photo.query(models.Photo.proprietario == self.request.GET['autor']).fetch(400)
-            autor = self.request.GET['autor']
+            if self.request.GET['autor']:
+                autor = self.request.GET['autor']
+            else:
+                autor = None
+            
+            if self.request.GET['decada']:
+                decada = int(self.request.GET['decada'])
+            else:
+                decada = None
+                
+            if self.request.GET['tag']:
+                tag = self.request.GET['tag']
+            else:
+                tag = None
+            
+            q = models.Photo.query()
+            if autor:
+                q = q.filter(models.Photo.proprietario == autor)
+            if decada:
+                q = q.filter(models.Photo.decada == decada)
+            if tag:
+                q = q.filter(models.Photo.tags == tag)
+            
+            photos = q.fetch(400)
+            
         else:
             photos = all_photos
             autor = None
+            decada = None
+            
         params = {
             'debug': '',
             'photos': photos,
             'autores': autores,
-            'autor': autor
+            'autor': autor,
+            'decada': decada
         }
         return self.render_template('galeria.html', **params)
         
