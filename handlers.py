@@ -24,19 +24,19 @@ class GaleriaHandler(BaseHandler):
         autores.sort()
         
         if self.request.GET:
-            if self.request.GET['autor']:
+            try:
                 autor = self.request.GET['autor']
-            else:
+            except:
                 autor = None
             
-            if self.request.GET['decada']:
+            try:
                 decada = int(self.request.GET['decada'])
-            else:
+            except:
                 decada = None
                 
-            if self.request.GET['tag']:
+            try:
                 tag = self.request.GET['tag']
-            else:
+            except:
                 tag = None
             
             q = models.Photo.query()
@@ -49,17 +49,15 @@ class GaleriaHandler(BaseHandler):
             
             photos = q.fetch(400)
             
-        else:
-            photos = all_photos
-            autor = None
-            decada = None
+
             
         params = {
             'debug': '',
-            'photos': photos,
-            'autores': autores,
-            'autor': autor,
-            'decada': decada
+            'photos': photos or all_photos,
+            'autores': autores or '',
+            'autor': autor or '',
+            'decada': decada or '',
+            'tag': tag or ''
         }
         return self.render_template('galeria.html', **params)
         
