@@ -21,11 +21,11 @@
         <div class="row">
 
             <div class="col-lg12" id="tags">
-                <ol>
+                <ul>
                 {% for t in tags %}
-                    <li><a href="{{ uri_for('galeria') }}?tag={{t}}">{{t}}</a></li>
+                    <li><a href="{{ uri_for('galeria') }}?tag={{t[0]}}">{{t[0]}}</a> ({{t[1]}})</li>
                 {% endfor %}
-                </ol>
+                </ul>
             </div>
         </div>
     
