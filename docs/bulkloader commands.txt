@@ -15,3 +15,22 @@ python appcfg.py upload_data --application=dev~memoriascoletivas --url=http://lo
 
 LIVE:
 python appcfg.py upload_data --url=http://memoriascoletivas.appspot.com/_ah/remote_api --filename=Photo.csv --email=pedromanacas@gmail.com --config_file=bulkloader.Photo.yaml --kind=Photo --num_threads=1
+
+
+
+
+
+
+
+
+
+
+**************
+Delete all from local datastore 
+**************
+in the interactive console:
+
+from google.appengine.ext import ndb
+import models
+all = models.Photo.query().fetch(400,keys_only=True)
+ndb.delete_multi(all)

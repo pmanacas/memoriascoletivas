@@ -23,6 +23,11 @@ class GaleriaHandler(BaseHandler):
                 autores.append(p.proprietario)
         autores.sort()
         
+        photos = None
+        autor = None
+        decada = None
+        tag = None
+        
         if self.request.GET:
             try:
                 autor = self.request.GET['autor']
@@ -60,7 +65,23 @@ class GaleriaHandler(BaseHandler):
             'tag': tag or ''
         }
         return self.render_template('galeria.html', **params)
-        
+
+class TagsHandler(BaseHandler):
+
+    def get(self):
+    
+        all_photos = models.Photo.query().fetch(400)
+        all_tags = [] #todo add count
+        for p in all_photos:
+            for t in p.tags:
+                if t not in all_tags:
+                    all_tags.append(t)
+        all_tags.sort()
+        params = {
+            'debug': '',
+            'tags': all_tags
+        }
+        return self.render_template('tags.html', **params)        
         
 class ProjetoHandler(BaseHandler):
 

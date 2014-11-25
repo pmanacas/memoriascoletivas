@@ -11,7 +11,6 @@ default_expiration: "30d"
 builtins:
 - remote_api: on
 
-
 skip_files:
 - ^(.*/)?app\.yaml
 - ^(.*/)?app\.yml

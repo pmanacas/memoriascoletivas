@@ -3,7 +3,7 @@ from webapp2_extras.routes import RedirectRoute
 
 _routes = [
     RedirectRoute(
-                    '/sem-javascript/', 
+                    '/sem-javascript', 
                     'handlers.NoJavascriptHandler', 
                     name='sem-javascript', strict_slash=True),
     RedirectRoute(
@@ -14,6 +14,10 @@ _routes = [
                     '/galeria', 
                     'handlers.GaleriaHandler', 
                     name='galeria', strict_slash=True),
+    RedirectRoute(
+                    '/tags', 
+                    'handlers.TagsHandler', 
+                    name='tags', strict_slash=True),
     RedirectRoute(
                     '/projeto', 
                     'handlers.ProjetoHandler', 
