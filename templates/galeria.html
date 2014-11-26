@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% set active_page = "galeria" %}
 {% block pageCSS %}
-<link rel="stylesheet" href="/css/slimbox2.css" />
+<link rel="stylesheet" href="/css/bootstrap-tokenfield.min.css"/>
+<link rel="stylesheet" href="/css/tokenfield-typeahead.min.css"/>
+<link rel="stylesheet" href="/css/slimbox2.css"/>
 {% endblock %}
 
 {% block PageHeader %}
@@ -80,6 +82,7 @@
 
 {% block pageJS %}
 	<script src="/js/jquery.lazyload.min.js"></script>
+    <script src="/js/bootstrap-tokenfield.min.js"></script>
     <script src="/js/slimbox2.js"></script>
     <script type="text/javascript">
 	$(document).ready(function() {

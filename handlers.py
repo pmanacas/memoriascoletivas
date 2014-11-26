@@ -50,12 +50,16 @@ class GaleriaHandler(BaseHandler):
         
         proprietarios = []
         decadas = []
+        all_tags = []
+        
         for p in photos:
             if p.proprietario not in proprietarios and p.proprietario != '':
                 proprietarios.append(p.proprietario)
             
             if p.decada not in decadas and p.decada is not None:
                 decadas.append(p.decada)
+            
+            all_tags.extend(p.tags)
                 
         if proprietario is not None and proprietario not in proprietarios:
             proprietarios.append(proprietario)
@@ -64,15 +68,22 @@ class GaleriaHandler(BaseHandler):
         if decada is not None and decada not in decadas:
             decadas.append(decada)
         decadas.sort()
-            
+        
+        tags = defaultdict(int)
+        for t in all_tags:
+            tags[t] += 1
+        
+        tags = sorted(tags.iteritems(), key=itemgetter(1), reverse=True)
+        
         params = {
-            'debug': count,
+            'debug': tags,
             'photos': photos,
             'proprietarios': proprietarios or '',   
             'decadas': decadas or '',
+            'tags': tags or '',
             'proprietario': proprietario or '',
             'decada': decada or '',
-            'tag': tag or ''
+            'tag': tag or '',
         }
         return self.render_template('galeria.html', **params)
 
