@@ -22,26 +22,32 @@
             <div class="col-lg12" id="filters">
                 <form class="form-inline" role="form" method="get" action="{{current_url}}">
                     <div class="form-group">
-                            <label class="sr-only" for="autor">Autor</label>
-                            <select id="autor" name="autor" class="form-control" onchange="this.form.submit()">
-                                <option value="" {% if autor == None %}selected{% endif %}>Filtrar por autor:</option>
-                                {% for a in autores %}
-                                <option value="{{a}}" {% if autor == a %}selected{% endif %}>{{a}}</option>
+                            <label class="sr-only" for="proprietario">Proprietário</label>
+                            <select id="proprietario" name="proprietario" class="form-control" onchange="this.form.submit()">
+                                <option value="" {% if proprietario == None %}selected{% endif %}>Filtrar por proprietário:</option>
+                                <option value="">// Mostrar Todos //</option>
+                                {% for a in proprietarios %}
+                                <option value="{{a}}" {% if proprietario == a %}selected{% endif %}>{{a}}</option>
                                 {% endfor %}
                             </select>
                     </div>
                     <div class="form-group">
-                            <label class="sr-only" for="decada">Decada</label>
+                            <label class="sr-only" for="decada">Década</label>
                             <select id="decada" name="decada" class="form-control" onchange="this.form.submit()">
                                 <option value="" {% if decada == None %}selected{% endif %}>Filtrar por década:</option>
-                                {% for d in [1940,1950,1960,1970,1980,1990,2000] %}
+                                <option value="">// Mostrar Todas //</option>
+                                {% for d in decadas %}
                                 <option value="{{d}}" {% if decada == d %}selected{% endif %}>{{d}}</option>
                                 {% endfor %}
                             </select>
                     </div>
+                    <div class="form-group">
+                        <a href="{{ uri_for('tags') }}?proprietario={{proprietario}}&decada={{decada}}" id="tags">Filtrar por tag</a>
+                        <a href="{{ uri_for('galeria') }}" id="limpar">Limpar todos os filtros</a>
+                    </div>
                  <!--<button type="submit" class="btn btn-primary">Filtrar</button> -->
                 </form>
-                <a href="{{ uri_for('galeria') }}" id="limpar">Limpar filtros</a>
+                
             </div>
         </div>
     
@@ -50,15 +56,15 @@
         <div class="col-lg12" id="galeria">
 		{% for p in photos %}
 
-          <a rel="lightbox-group" title="{{p.legenda}} [Autor: {{p.proprietario}}{{' '+p.data_vaga if p.data_vaga != ''}}]" id="{{p.flickr_id}}" href="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_z.jpg"><img class="img-responsive imagem-peq" src="img/blank.gif" data-original="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg" /><noscript><img class="img-responsive imagem-peq" src="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg"></noscript></a>
+          <a rel="lightbox-group" title="{{p.legenda}} [Imagem cedida por: {{p.proprietario}}{{' '+p.data_vaga if p.data_vaga != ''}}]" id="{{p.flickr_id}}" href="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_z.jpg"><img class="img-responsive imagem-peq" src="img/blank.gif" data-original="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg" /><noscript><img class="img-responsive imagem-peq" src="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg"></noscript></a>
           <div id="caption-{{p.flickr_id}}" style="display:none;">
-            <p><strong>{{p.legenda}}</strong> [Autor: {{p.proprietario}}{{' '+p.data_vaga if p.data_vaga != ''}}]</p>
+            <p><strong>{{p.legenda}}</strong> [Imagem cedida por: {{p.proprietario}}{{' '+p.data_vaga if p.data_vaga != ''}}]</p>
             <ul>
                 {% for t in p.tags %}
                 <li>{{t}}</li>
                 {% endfor %}
             </ul>
-            <a target="_blank" href="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_originalsecret}}_o.jpg"><span class="glyphicon glyphicon-download-alt"></span> Download tamanho original</a>
+            <!-- <a target="_blank" href="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_originalsecret}}_o.jpg"><span class="glyphicon glyphicon-download-alt"></span> Download tamanho original</a> -->
           </div>
 		
         {% endfor %}

@@ -21,12 +21,12 @@ class GaleriaHandler(BaseHandler):
         q = models.Photo.query()
         
         try:
-            autor = self.request.GET['autor']
-            if autor == '':
+            proprietario = self.request.GET['proprietario']
+            if proprietario == '':
                 raise
-            q = q.filter(models.Photo.proprietario == autor)
+            q = q.filter(models.Photo.proprietario == proprietario)
         except:
-            autor = None
+            proprietario = None
         
         try:
             decada = int(self.request.GET['decada'])
@@ -48,19 +48,29 @@ class GaleriaHandler(BaseHandler):
         count = len(photos)
             
         
-        autores = []
+        proprietarios = []
+        decadas = []
         for p in photos:
-            if p.proprietario not in autores and p.proprietario != "":
-                autores.append(p.proprietario)
-        if autor and autor not in autores:
-            autores.append(autor)
-        autores.sort()
+            if p.proprietario not in proprietarios and p.proprietario != '':
+                proprietarios.append(p.proprietario)
+            
+            if p.decada not in decadas and p.decada is not None:
+                decadas.append(p.decada)
+                
+        if proprietario is not None and proprietario not in proprietarios:
+            proprietarios.append(proprietario)
+        proprietarios.sort()
+        
+        if decada is not None and decada not in decadas:
+            decadas.append(decada)
+        decadas.sort()
             
         params = {
             'debug': count,
             'photos': photos,
-            'autores': autores or '',   
-            'autor': autor or '',
+            'proprietarios': proprietarios or '',   
+            'decadas': decadas or '',
+            'proprietario': proprietario or '',
             'decada': decada or '',
             'tag': tag or ''
         }
@@ -82,9 +92,23 @@ class TagsHandler(BaseHandler):
         
         tags = sorted(tags.iteritems(), key=itemgetter(1), reverse=True)
         
+        
+        try:
+            proprietario = self.request.GET['proprietario']
+        except:
+            proprietario = ''
+        
+        try:
+            decada = int(self.request.GET['decada'])
+        except:
+            decada = ''
+        
+        
         params = {
             'debug': '',
-            'tags': tags
+            'tags': tags,
+            'proprietario': proprietario,
+            'decada': decada,
         }
         return self.render_template('tags.html', **params)        
         
