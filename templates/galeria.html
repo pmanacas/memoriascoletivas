@@ -12,7 +12,7 @@
           <div class="row">
 
             <div class="col-lg-12">
-              <h1 class="page-header">Galeria de fotografias</h1>
+              <h1 class="page-header">Galeria</h1>
             </div>
 
         </div>
@@ -43,9 +43,10 @@
                     </div>
                     <div class="form-group">
                         <a href="{{ uri_for('tags') }}?proprietario={{proprietario}}&decada={{decada}}" id="tags">Filtrar por tag</a>
-                        <a href="{{ uri_for('galeria') }}" id="limpar">Limpar filtros</a>
                     </div>
-                 <!--<button type="submit" class="btn btn-primary">Filtrar</button> -->
+                    <div class="form-group">
+                        <a class="btn btn-default" href="{{ uri_for('galeria') }}" id="limpar">Limpar filtros</a>
+                    </div>
                 </form>
                 
             </div>
@@ -59,9 +60,10 @@
           <a rel="lightbox-group" title="{{p.legenda}} [Imagem cedida por: {{p.proprietario}}{{' '+p.data_vaga if p.data_vaga != ''}}]" id="{{p.flickr_id}}" href="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_z.jpg"><img class="img-responsive imagem-peq" src="img/blank.gif" data-original="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg" /><noscript><img class="img-responsive imagem-peq" src="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg"></noscript></a>
           <div id="caption-{{p.flickr_id}}" style="display:none;">
             <p><strong>{{p.legenda}}</strong> [Imagem cedida por: {{p.proprietario}}{{' '+p.data_vaga if p.data_vaga != ''}}]</p>
-            <ul>
+            <ul class="tags-list">
+                <li><strong>Tags:</strong></li>
                 {% for t in p.tags %}
-                <li>{{t}}</li>
+                <li><a href="{{ uri_for('galeria') }}?tag={{t}}">{{t}}</a></li>
                 {% endfor %}
             </ul>
             <!-- <a target="_blank" href="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_originalsecret}}_o.jpg"><span class="glyphicon glyphicon-download-alt"></span> Download tamanho original</a> -->

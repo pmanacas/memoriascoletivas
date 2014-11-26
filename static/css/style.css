@@ -82,3 +82,25 @@ div#galeria {
 div#filters {
     padding:0 0 16px 16px;
 }
+
+.form-group {
+    margin-right:20px;
+}
+
+.tags-title {
+    display:inline;
+}
+
+ul.tags-list {
+    padding:0;
+    list-style-type: none;
+
+}
+
+ul.tags-list li {
+    display:inline;
+}
+
+#proprietario {
+    width:300px;
+}
