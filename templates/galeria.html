@@ -52,6 +52,7 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
                         <a class="btn btn-default" href="{{ uri_for('galeria') }}" id="limpar">Limpar filtros</a>
                     </div>
                 </form>
@@ -94,12 +95,7 @@
  		
 		$('img.imagem-peq').lazyload();
         
-        $('#tags-field')
-        .on('change', function (e) {
-            console.log($('#tags-field').val())
-            $('#filtros-form').submit();
-        })
-        .tokenfield({
+        $('#tags-field').tokenfield({
             autocomplete: {
                 source: [{% for t in tags %}"{{t[0]}}"{% if not loop.last %},{% endif %}{% endfor %}],
                 delay: 100
@@ -108,6 +104,7 @@
             minLength: 2,
             limit:3,
             beautify: false
+            {% if tag %},tokens: "{{tag}}"{% endif %}
         })
         
     });

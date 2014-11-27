@@ -37,13 +37,17 @@ class GaleriaHandler(BaseHandler):
             decada = None
 
         try:
-            #todo handle coma seperated tag query
             tag = self.request.GET['tag']
             if tag == '':
                 raise
-            q = q.filter(models.Photo.tags == tag)
+
         except:
+            logging.error("exception raised:")
             tag = None
+        else:
+            tag_list = tag.split(",")
+            q = q.filter(models.Photo.tags.IN(tag_list))
+            logging.error("filterd on tag")
         
         photos = q.fetch(400)
         count = len(photos)
@@ -84,7 +88,7 @@ class GaleriaHandler(BaseHandler):
             'tags': tags or '',
             'proprietario': proprietario or '',
             'decada': decada or '',
-            'tag': tag or '',
+            'tag': tag,
         }
         return self.render_template('galeria.html', **params)
 
