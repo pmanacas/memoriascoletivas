@@ -37,6 +37,7 @@ class GaleriaHandler(BaseHandler):
             decada = None
 
         try:
+            #todo handle coma seperated tag query
             tag = self.request.GET['tag']
             if tag == '':
                 raise
@@ -76,7 +77,7 @@ class GaleriaHandler(BaseHandler):
         tags = sorted(tags.iteritems(), key=itemgetter(1), reverse=True)
         
         params = {
-            'debug': tags,
+            'debug': count,
             'photos': photos,
             'proprietarios': proprietarios or '',   
             'decadas': decadas or '',

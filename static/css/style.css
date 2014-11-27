@@ -102,5 +102,15 @@ ul.tags-list li {
 }
 
 #proprietario {
-    width:300px;
+    width:270px;
+}
+
+#decada {
+    width:180px;
+}
+
+
+
+.tags .input-group {
+width:430px;
 }
