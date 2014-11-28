@@ -51,6 +51,9 @@
                                 {% endfor %}
                             </select>
                     </div>
+                    <div class="form-group link-tags">
+                        <a class="btn btn-primary" href="{{ uri_for('tags') }}?proprietario={{proprietario}}&decada={{decada}}" id="link-tags"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>&nbsp;Ver tags</a>
+                    </div>
                     <div class="form-group limpar">
                         <a class="btn btn-default" href="{{ uri_for('galeria') }}" id="limpar"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Limpar filtros</a>
                     </div>
@@ -63,7 +66,6 @@
 
         <div class="col-lg12" id="galeria">
 		{% for p in photos %}
-
           <a rel="lightbox-group" title="{{p.legenda}} [Imagem cedida por: {{p.proprietario}}{{' '+p.data_vaga if p.data_vaga != ''}}]" id="{{p.flickr_id}}" href="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_z.jpg"><img class="img-responsive imagem-peq" src="img/blank.gif" data-original="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg" /><noscript><img class="img-responsive imagem-peq" src="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg"></noscript></a>
           <div id="caption-{{p.flickr_id}}" style="display:none;">
             <p><strong>{{p.legenda}}</strong><br/>Imagem cedida por: {{p.proprietario}}{{' (' + p.data_vaga + ')' if p.data_vaga != ''}}</p>
@@ -74,7 +76,6 @@
                 {% endfor %}
             </ul>
           </div>
-		
         {% endfor %}
         <div class="clearfix"></div>
         </div>
