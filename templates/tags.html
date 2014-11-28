@@ -20,12 +20,10 @@
         
         <div class="row">
 
-            <div class="col-lg12" id="tags">
-                <ul>
+            <div class="col-lg12" id="tag-cloud">
                 {% for t in tags %}
-                    <li><a href="{{ uri_for('galeria') }}?tag={{t[0]}}&proprietario={{proprietario}}&decada={{decada}}">{{t[0]}}</a> ({{t[1]}})</li>
+                    <div class="tag" style="font-size:{{t[1]}}px;"><a href="{{ uri_for('galeria') }}?tag={{t[0]}}&proprietario={{proprietario}}&decada={{decada}}">{{t[0]}}</a></div>
                 {% endfor %}
-                </ul>
             </div>
         </div>
     

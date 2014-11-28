@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 {% set active_page = "galeria" %}
 {% block pageCSS %}
-
-<link rel="stylesheet" href="/css/jquery-ui.min.css"/>
-<link rel="stylesheet" href="/css/bootstrap-tokenfield.min.css"/>
 <link rel="stylesheet" href="/css/slimbox2.css"/>
 {% endblock %}
 
@@ -45,15 +42,17 @@
                             </select>
                     </div>
                     <div class="form-group tags">
-                        <div class="input-group">
                             <label class="sr-only" for="tags-field">Tags</label>
-                            <div class="input-group-addon" title="Limitado a 3 tags">Tags</div>
-                            <input type="text" class="form-control" name="tag" id="tags-field"/>
-                        </div>
+                            <select id="tag" name="tag" class="form-control" onchange="this.form.submit()">
+                                <option value="" {% if tag == None %}selected{% endif %}>Filtrar por tag:</option>
+                                <option value="">// Mostrar Todas //</option>
+                                {% for t in tags %}
+                                <option value="{{t}}" {% if tag == t %}selected{% endif %}>{{t}}</option>
+                                {% endfor %}
+                            </select>
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" id="filtrar">Filtrar</button>
-                        <a class="btn btn-default" href="{{ uri_for('galeria') }}" id="limpar">Limpar filtros</a>
+                    <div class="form-group limpar">
+                        <a class="btn btn-default" href="{{ uri_for('galeria') }}" id="limpar"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Limpar filtros</a>
                     </div>
                 </form>
                 
@@ -67,7 +66,7 @@
 
           <a rel="lightbox-group" title="{{p.legenda}} [Imagem cedida por: {{p.proprietario}}{{' '+p.data_vaga if p.data_vaga != ''}}]" id="{{p.flickr_id}}" href="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_z.jpg"><img class="img-responsive imagem-peq" src="img/blank.gif" data-original="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg" /><noscript><img class="img-responsive imagem-peq" src="http://farm{{p.flickr_farm}}.staticflickr.com/{{p.flickr_server}}/{{p.flickr_id}}_{{p.flickr_secret}}_q.jpg"></noscript></a>
           <div id="caption-{{p.flickr_id}}" style="display:none;">
-            <p><strong>{{p.legenda}}</strong> [Imagem cedida por: {{p.proprietario}}{{' '+p.data_vaga if p.data_vaga != ''}}]</p>
+            <p><strong>{{p.legenda}}</strong><br/>[Imagem cedida por: {{p.proprietario}}{{' '+p.data_vaga if p.data_vaga != ''}}]</p>
             <ul class="tags-list">
                 <li><strong>Tags:</strong></li>
                 {% for t in p.tags %}
@@ -88,24 +87,11 @@
 
 {% block pageJS %}
 	<script src="/js/jquery.lazyload.min.js"></script>
-    <script src="/js/bootstrap-tokenfield.min.js"></script>
     <script src="/js/slimbox2.js"></script>
     <script type="text/javascript">
 	$(document).ready(function() {
  		
 		$('img.imagem-peq').lazyload();
-        
-        $('#tags-field').tokenfield({
-            autocomplete: {
-                source: [{% for t in tags %}"{{t}}"{% if not loop.last %},{% endif %}{% endfor %}],
-                delay: 100
-            },
-            showAutocompleteOnFocus: true,
-            minLength: 2,
-            limit:3,
-            beautify: false
-            {% if tag %},tokens: "{{tag}}"{% endif %}
-        })
         
     });
     </script>

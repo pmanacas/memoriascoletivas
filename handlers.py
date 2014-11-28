@@ -45,8 +45,7 @@ class GaleriaHandler(BaseHandler):
             tag = None
             
         else:
-            tag_list = tag.split(",")
-            q = q.filter(models.Photo.tags.IN(tag_list))
+            q = q.filter(models.Photo.tags == tag)
         
         photos = q.fetch(400)
         count = len(photos)
@@ -79,7 +78,7 @@ class GaleriaHandler(BaseHandler):
 
         
         params = {
-            'debug': count,
+            'debug': '',
             'photos': photos,
             'proprietarios': proprietarios or '',   
             'decadas': decadas or '',

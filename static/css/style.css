@@ -80,7 +80,7 @@ div#galeria {
 }
 
 div#filters {
-    padding:0 0 16px 16px;
+    padding:0 0 20px 16px;
 }
 
 .form-group {
@@ -105,32 +105,21 @@ ul.tags-list li {
     width:274px;
 }
 
-#decada {
+#decada, #tag {
     width:180px;
 }
 
-
-
-.tags .input-group {
-width:580px;
+#tag-cloud {
+    padding-left:16px;
+    padding-right:16px;
 }
 
-.ui-autocomplete {
-    max-height: 300px;
-    overflow-y: auto;
-    /* prevent horizontal scrollbar */
-    overflow-x: hidden;
-    /* add padding to account for vertical scrollbar */
-    padding-right: 20px;
+#tag-cloud .tag {
+    float:left;
+    display:inline;
 }
-/* IE 6 doesn't support max-height
- * we use height instead, but this forces the menu to always be this tall
- */
-* html .ui-autocomplete {
-    height: 100px;
+
+.limpar {
+float:right;
 }
-#filtrar, #limpar {
-    margin-top:20px;
-    margin-right:20px;
-    
-}
+
