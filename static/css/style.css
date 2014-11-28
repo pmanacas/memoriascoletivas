@@ -117,6 +117,7 @@ ul.tags-list li {
 #tag-cloud .tag {
     float:left;
     display:inline;
+    padding:10px;
 }
 
 .limpar {
