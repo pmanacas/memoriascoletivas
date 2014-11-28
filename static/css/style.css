@@ -112,6 +112,7 @@ ul.tags-list li {
 #tag-cloud {
     padding-left:16px;
     padding-right:16px;
+    height:500px;
 }
 
 #tag-cloud .tag {
