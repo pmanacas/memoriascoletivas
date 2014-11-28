@@ -47,12 +47,12 @@
                     <div class="form-group tags">
                         <div class="input-group">
                             <label class="sr-only" for="tags-field">Tags</label>
-                            <div class="input-group-addon">Tags</div>
+                            <div class="input-group-addon" title="Limitado a 3 tags">Tags</div>
                             <input type="text" class="form-control" name="tag" id="tags-field"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                        <button type="submit" class="btn btn-primary" id="filtrar">Filtrar</button>
                         <a class="btn btn-default" href="{{ uri_for('galeria') }}" id="limpar">Limpar filtros</a>
                     </div>
                 </form>
@@ -97,7 +97,7 @@
         
         $('#tags-field').tokenfield({
             autocomplete: {
-                source: [{% for t in tags %}"{{t[0]}}"{% if not loop.last %},{% endif %}{% endfor %}],
+                source: [{% for t in tags %}"{{t}}"{% if not loop.last %},{% endif %}{% endfor %}],
                 delay: 100
             },
             showAutocompleteOnFocus: true,

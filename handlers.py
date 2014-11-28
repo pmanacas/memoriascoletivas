@@ -42,12 +42,11 @@ class GaleriaHandler(BaseHandler):
                 raise
 
         except:
-            logging.error("exception raised:")
             tag = None
+            
         else:
             tag_list = tag.split(",")
             q = q.filter(models.Photo.tags.IN(tag_list))
-            logging.error("filterd on tag")
         
         photos = q.fetch(400)
         count = len(photos)
@@ -55,7 +54,7 @@ class GaleriaHandler(BaseHandler):
         
         proprietarios = []
         decadas = []
-        all_tags = []
+        tags = []
         
         for p in photos:
             if p.proprietario not in proprietarios and p.proprietario != '':
@@ -64,7 +63,9 @@ class GaleriaHandler(BaseHandler):
             if p.decada not in decadas and p.decada is not None:
                 decadas.append(p.decada)
             
-            all_tags.extend(p.tags)
+            for t in p.tags:
+                if t not in tags:
+                    tags.append(t)
                 
         if proprietario is not None and proprietario not in proprietarios:
             proprietarios.append(proprietario)
@@ -74,11 +75,8 @@ class GaleriaHandler(BaseHandler):
             decadas.append(decada)
         decadas.sort()
         
-        tags = defaultdict(int)
-        for t in all_tags:
-            tags[t] += 1
-        
-        tags = sorted(tags.iteritems(), key=itemgetter(1), reverse=True)
+        tags.sort()
+
         
         params = {
             'debug': count,
@@ -92,12 +90,14 @@ class GaleriaHandler(BaseHandler):
         }
         return self.render_template('galeria.html', **params)
 
+        
+
 class TagsHandler(BaseHandler):
 
     def get(self):
     
         all_photos = models.Photo.query().fetch(400)
-        all_tags = [] #todo add count
+        all_tags = []
         for p in all_photos:
             all_tags.extend(p.tags)
         
