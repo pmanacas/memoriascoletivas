@@ -10,6 +10,14 @@ class HomePageHandler(BaseHandler):
     def get(self):
         params = {
             'debug': '',
+            'photos': [
+                        'https://farm3.staticflickr.com/2887/10050553674_20960ce96d_q.jpg',
+                        'https://farm8.staticflickr.com/7399/10047455504_6c2fa9a48d_q.jpg',
+                        'https://farm8.staticflickr.com/7398/10047458805_f41e98f877_q.jpg',
+                        'https://farm6.staticflickr.com/5349/10051250764_491ff8704e_q.jpg',
+                        'https://farm6.staticflickr.com/5513/10051191184_a62d31c32a_q.jpg',
+                        'https://farm4.staticflickr.com/3828/10050486525_05e67a0d63_q.jpg'
+            ]
         }
         return self.render_template('home.html', **params)
 

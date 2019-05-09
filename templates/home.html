@@ -9,8 +9,16 @@
     <div class="jumbotron imagem-home">
       <div class="container home-intro-box">
         <h1 class="">Memórias Coletivas da Cova do Vapor</h1>
-        <p class="home-intro-text">Aqui poderá encontrar o resultado da recolha de fotografias da Cova do Vapor, <br />que contribuem para reunir e retratar as memórias coletivas desta comunidade.</p>
-        <p style="margin-top:30px;" class=""><a href="{{ uri_for('galeria') }}" class="btn btn-primary btn-lg">Entrar na galeria &raquo;</a></p>
+        <p class="home-intro-text">Aqui pode encontrar o resultado da recolha de fotografias na Cova do Vapor, <br />que contribui para reunir e retratar as memórias coletivas desta comunidade.</p>
+        <p style="margin-top:40px;" class=""><a href="{{ uri_for('galeria') }}" class="btn btn-primary btn-lg">Entrar na galeria &raquo;</a></p>
+        
+        <div class="row" id="home-images">
+            <div class="col-lg-12">
+            {% for p in photos %}
+              <a href="{{ uri_for('galeria') }}"><img class="img-responsive imagem-peq" src="{{p}}"></a>
+            {% endfor %}
+            </div>
+        </div>
       </div>
     </div>
 

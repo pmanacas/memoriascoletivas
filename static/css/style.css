@@ -68,11 +68,12 @@ div.projeto p, div.historia p{
 	margin-top:25px;
 }
 	
-#email-btn {
-	margin:30px 0 100px 0;
-}
+
 #email-txt{
+    display:block;
 	font-size:1.3em;
+    margin-bottom:5em;
+    margin-top:2em;
 }
 
 div#galeria {
@@ -80,7 +81,7 @@ div#galeria {
 }
 
 div#filters {
-    padding:0 0 20px 16px;
+    margin:20px 0 20px 16px;
 }
 
 .form-group {
@@ -120,8 +121,12 @@ ul.tags-list li {
     display:inline;
     padding:10px;
 }
-
+#home-images {
+    margin-top:40px;
+    margin-bottom:40px; 
+}
+/*
 .limpar {
 float:right;
 }
-
+*/
